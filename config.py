@@ -60,6 +60,10 @@ class Config:
     SMTP_PASSWORD = os.environ.get('SMTP_PASSWORD') or ''
     SMTP_FROM = os.environ.get('SMTP_FROM') or os.environ.get('SMTP_USER') or 'no-reply@coagrix.local'
     SMTP_USE_SSL = os.environ.get('SMTP_USE_SSL', '0') == '1'  # 1 = puerto 465 (SSL); 0 = STARTTLS (587)
+    # Envío por Google Apps Script (HTTPS). Si MAIL_SCRIPT_URL tiene valor,
+    # se usa en lugar de SMTP. Ver docs/correo_google_apps_script.md
+    MAIL_SCRIPT_URL = os.environ.get('MAIL_SCRIPT_URL') or ''
+    MAIL_SCRIPT_SECRET = os.environ.get('MAIL_SCRIPT_SECRET') or ''
     # Dirección pública del sitio, para armar los enlaces de los correos
     # (ej. https://coagrix.com). Vacío = se usa la del navegador de quien pide.
     APP_BASE_URL = (os.environ.get('APP_BASE_URL') or '').rstrip('/')
