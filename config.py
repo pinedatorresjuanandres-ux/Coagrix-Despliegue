@@ -47,6 +47,10 @@ class Config:
     MAX_CONTENT_LENGTH = 16 * 1024 * 1024
     WTF_CSRF_TIME_LIMIT = None  
     RATELIMIT_STORAGE_URI = os.environ.get('RATELIMIT_STORAGE_URI') or 'memory://'
+    # Límite de intentos (login, registro, comentarios). Apagado por defecto:
+    # en Render y en redes compartidas (SENA) todos llegan con la misma IP y
+    # se bloqueaban entre sí. Para activarlo: RATELIMIT_ENABLED=1
+    RATELIMIT_ENABLED = os.environ.get('RATELIMIT_ENABLED', '0') == '1'
 
     # Correo saliente (recuperar contraseña). Si SMTP_HOST está vacío no se
     # envían correos: el enlace se imprime en la consola del servidor.
